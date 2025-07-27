@@ -1,8 +1,18 @@
 [package]
 name = "eos"
 version = "0.1.0"
+description = "Eos: A neuromorphic robotics OS for adaptive navigation using spiking neural networks"
+repo = "https://github.com/[Your GitHub Username]/eos-os"
+readme = "README.md"
+keywords = ["robotics", "neuromorphic", "os", "ai", "rust"]
+categories =  ["science::robotics", "embedded"]
 edition = "2024"
-authors = ["Mariam Khayr <mariamkhayr8@gmail.com>"]
+author = ["Mariam Khayr <mariamkhayr8@gmail.com>"]
 
 [dependencies]
-# 
+# r2r = { version = "0.8.0", features = ["ros2_humble"] } 
+log = "0.4.21" 
+env_logger = "0.10.2" 
+serde = { version = "1.0.203", features = ["derive"] } 
+serde_yaml = "0.9.34" 
+nalgebra = "0.32.5" 
