@@ -1,0 +1,8 @@
+[package]
+name = "eos"
+version = "0.1.0"
+edition = "2024"
+authors = ["Mariam Khayr <mariamkhayr8@gmail.com>"]
+
+[dependencies]
+# 
