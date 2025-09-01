@@ -120,3 +120,4 @@ impl Memory {
 // - Detects loop closures using simple distance-based checks.
 // - Serializes/loads memory to/from YAML files.
 // - Provides access to trajectory and map for navigation and localization.
+hhhh
