@@ -16,6 +16,7 @@ env_logger = "0.10.2"
 serde = { version = "1.0.203", features = ["derive"] } 
 serde_yaml = "0.9.34" 
 nalgebra = "0.32.5" 
+r2r = "0.9.5"
 
 [dev-dependencies] 
 rstest = "0.18.2" 
