@@ -1,0 +1,86 @@
+<?xml version="1.0" ?>
+<!-- config/gazebo_world.sdf -->
+<!-- Defines a Gazebo simulation environment for Eos navigation testing. -->
+
+<sdf version="1.7">
+  <world name="eos_world">
+
+    <!-- Ground plane -->
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Dynamic obstacle (moving block) -->
+    <model name="obstacle">
+      <pose>2 0 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.5 0.5 0.5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.5 0.5 0.5</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>1 0 0 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Include TurtleBot3 (assumes model installed) -->
+    <include>
+      <uri>model://turtlebot3_burger</uri>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+
+  </world>
+</sdf>
+
+<!-- SWOT Analysis -->
+<!-- Strengths: -->
+<!-- - Simplicity: Basic environment with TurtleBot3 and one obstacle, easy for MVP demo. -->
+<!-- - Compatibility: Works with Gazebo and ROS 2, ensuring Z Fellows demo feasibility. -->
+<!-- - Visual Appeal: Clear setup for 30-second demo video, showcasing spatial navigation. -->
+
+<!-- Weaknesses: -->
+<!-- - Basic Environment: Single obstacle lacks complexity (e.g., no dynamic motion). -->
+<!-- - Manual Setup: Requires TurtleBot3 model installation, adding setup time. -->
+<!-- - Limited Spatial Features: No support for SLAM or complex terrain in MVP. -->
+
+<!-- Opportunities: -->
+<!-- - Enhancement: Add moving obstacles or SLAM for richer spatial testing. -->
+<!-- - Traction: Visual demo attracts robotics developers for GitHub stars. -->
+<!-- - Scalability: Extend to multi-robot scenarios for future iterations. -->
+
+<!-- Threats: -->
+<!-- - Demo Impact: Simple environment may underwhelm Z Fellows compared to ROS 2 demos. -->
+<!-- - Setup Errors: Gazebo configuration issues (e.g., model paths) could delay testing. -->
+<!-- - Competition: ROS 2’s Gazebo worlds are more advanced, risking perceived inferiority. -->
