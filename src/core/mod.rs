@@ -8,6 +8,8 @@
 pub mod localization;
 pub mod perception;
 pub mod state;
+mod memory;
+pub mod memory;
 
 // Re-export key types and functions for a unified API, minimizing external dependencies
 pub use localization::{Localization, Pose, PoseConfidence};
