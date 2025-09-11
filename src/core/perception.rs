@@ -32,7 +32,7 @@ pub struct SemanticObject {
 // Perception snapshot: Current environment state
 #[derive(Clone, Serialize, Deserialize, Debug)]
 pub struct Snapshot {
-    grid: OccupancyGrid,
+    pub(crate) grid: OccupancyGrid,
     objects: HashMap<u64, SemanticObject>,
 }
 
