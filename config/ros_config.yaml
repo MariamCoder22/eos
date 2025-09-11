@@ -1,0 +1,8 @@
+ros:
+  topics:
+    cmd_vel: "/cmd_vel"
+    scan: "/scan"
+  parameters:
+    max_speed: 0.5
+    max_turn: 1.0
+
