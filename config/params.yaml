@@ -1,0 +1,143 @@
+# Eos Robotics OS Configuration Parameters
+# This file contains all tunable parameters for the Eos system
+
+# =============================================================================
+# Neural Network Parameters
+# =============================================================================
+neural:
+  # Model configuration
+  model_path: "models/default_snn.json"
+  input_size: 100
+  output_size: 10
+  hidden_layers: 2
+  hidden_neurons: 64
+  
+  # Processing parameters
+  update_rate: 10.0        # Hz
+  spike_threshold: 0.5
+  learning_rate: 0.01
+  time_steps: 10
+  
+  # Confidence thresholds
+  confidence_threshold: 0.7
+  uncertainty_threshold: 0.3
+
+# =============================================================================
+# Navigation Parameters
+# =============================================================================
+navigation:
+  # Velocity limits
+  max_linear_velocity: 0.5      # m/s
+  max_angular_velocity: 1.0     # rad/s
+  max_acceleration: 0.3         # m/s²
+  
+  # Safety parameters
+  safety_distance: 0.5          # meters
+  emergency_stop_distance: 0.2  # meters
+  obstacle_inflation: 0.3       # meters
+  
+  # Goal parameters
+  goal_tolerance: 0.1           # meters
+  planning_timeout: 5.0         # seconds
+  
+  # Update rates
+  planning_rate: 15.0           # Hz
+  control_rate: 20.0            # Hz
+
+# =============================================================================
+# ROS2 Interface Parameters
+# =============================================================================
+ros:
+  # Node configuration
+  node_name: "eos_ros_node"
+  domain_id: 0
+  
+  # QoS settings
+  qos_depth: 10
+  qos_reliability: "best_effort"  # or "reliable"
+  qos_durability: "volatile"      # or "transient_local"
+  
+  # Topic names
+  topics:
+    laser_scan: "/scan"
+    imu: "/imu"
+    odometry: "/odom"
+    cmd_vel: "/cmd_vel"
+    neural_output: "/eos/neural_output"
+    status: "/eos/status"
+
+# =============================================================================
+# Simulation Parameters
+# =============================================================================
+simulation:
+  use_sim_time: true
+  world_name: "eos_test_world"
+  robot_model: "waffle_pi"
+  
+  # Gazebo parameters
+  gazebo:
+    real_time_factor: 1.0
+    max_step_size: 0.001
+    physics_engine: "ode"
+
+# =============================================================================
+# Core System Parameters
+# =============================================================================
+core:
+  # Update rates
+  localization_rate: 10.0    # Hz
+  perception_rate: 15.0      # Hz
+  state_update_rate: 5.0     # Hz
+  
+  # Memory parameters
+  memory_persistence_interval: 30  # seconds
+  max_memory_entries: 1000
+  
+  # Emotional parameters (for humanistic behavior)
+  emotional:
+    confidence_decay: 0.95
+    frustration_threshold: 0.8
+    curiosity_rate: 0.1
+
+# =============================================================================
+# Application-Specific Parameters
+# =============================================================================
+applications:
+  # Rover-specific parameters
+  rover:
+    terrain_adaptation_rate: 0.1
+    max_slope: 0.3           # radians
+    rough_terrain_threshold: 0.6
+    
+  # Drone-specific parameters  
+  drone:
+    max_altitude: 10.0       # meters
+    min_altitude: 1.0        # meters
+    wind_compensation_gain: 0.5
+    
+  # Indoor-specific parameters
+  indoor:
+    social_awareness_gain: 0.8
+    human_proximity_threshold: 2.0  # meters
+    privacy_zone_radius: 1.5        # meters
+
+# =============================================================================
+# Debug and Logging Parameters
+# =============================================================================
+debug:
+  # Logging levels
+  log_level: "info"  # debug, info, warn, error
+  ros_log_level: "info"
+  
+  # Debug outputs
+  enable_neural_debug: true
+  enable_navigation_debug: true
+  enable_perception_debug: false
+  
+  # Visualization
+  publish_debug_topics: true
+  rviz_config: "config/eos_navigation.rviz"
+  
+  # Performance monitoring
+  enable_profiling: false
+  profile_output_file: "eos_performance.log"
