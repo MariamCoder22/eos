@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>eos_robotics</name>
+  <version>0.1.0</version>
+  <description>
+    Eos Humanistic Robotics OS - Adaptive navigation system using spiking neural networks
+    for human-like robot behavior and decision making.
+  </description>
+  <maintainer email="your-email@example.com">Your Name</maintainer>
+  <license>MIT</license>
+
+  <!-- Build dependencies -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_cmake_ros</buildtool_depend>
+
+  <!-- ROS2 dependencies -->
+  <depend>rclcpp</depend>
+  <depend>rclpy</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>tf2</depend>
+  <depend>tf2_ros</depend>
+  <depend>tf2_geometry_msgs</depend>
+
+  <!-- Simulation dependencies -->
+  <depend>gazebo_ros</depend>
+  <depend>gazebo_plugins</depend>
+  
+  <!-- TurtleBot3 dependencies -->
+  <depend>turtlebot3_gazebo</depend>
+  <depend>turtlebot3_description</depend>
+  <depend>turtlebot3_msgs</depend>
+
+  <!-- Navigation dependencies -->
+  <depend>navigation2</depend>
+  <depend>nav2_bringup</depend>
+  <depend>slam_toolbox</depend>
+
+  <!-- Python dependencies for neural network bridge -->
+  <exec_depend>python3-numpy</exec_depend>
+  <exec_depend>python3-opencv</exec_depend>
+
+  <!-- Export for ROS2 tools -->
+  <export>
+    <build_type>ament_cmake</build_type>
+    <ros2_cmake>
+      <depend>r2r</depend>
+    </ros2_cmake>
+  </export>
+</package>
