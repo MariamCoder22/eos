@@ -1,0 +1,187 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="eos_test_world">
+    
+    <!-- Global illumination -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- Ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Testing environment with obstacles -->
+    <model name="test_environment">
+      <static>true</static>
+      
+      <!-- Central obstacle -->
+      <link name="central_obstacle">
+        <pose>2 2 0.5 0 0 0</pose>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.2 0.2 1</ambient>
+            <diffuse>0.8 0.2 0.2 1</diffuse>
+          </material>
+        </visual>
+      </link>
+
+      <!-- Wall obstacles for navigation testing -->
+      <link name="wall_1">
+        <pose>4 0 0.5 0 0 1.57</pose>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>4 0.1 1</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>4 0.1 1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.2 0.2 0.8 1</ambient>
+            <diffuse>0.2 0.2 0.8 1</diffuse>
+          </material>
+        </visual>
+      </link>
+
+      <link name="wall_2">
+        <pose>0 4 0.5 0 0 0</pose>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>4 0.1 1</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>4 0.1 1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.2 0.2 0.8 1</ambient>
+            <diffuse>0.2 0.2 0.8 1</diffuse>
+          </material>
+        </visual>
+      </link>
+
+      <!-- Dynamic obstacle for testing adaptation -->
+      <model name="moving_obstacle">
+        <pose>1 3 0.25 0 0 0</pose>
+        <link name="link">
+          <collision name="collision">
+            <geometry>
+              <cylinder>
+                <radius>0.3</radius>
+                <length>0.5</length>
+              </cylinder>
+            </geometry>
+          </collision>
+          <visual name="visual">
+            <geometry>
+              <cylinder>
+                <radius>0.3</radius>
+                <length>0.5</length>
+              </cylinder>
+            </geometry>
+            <material>
+              <ambient>0.2 0.8 0.2 1</ambient>
+              <diffuse>0.2 0.8 0.2 1</diffuse>
+            </material>
+          </visual>
+        </link>
+        
+        <!-- Simple periodic motion -->
+        <plugin name="move_obstacle" filename="libgazebo_ros_planar_move.so">
+          <frame_id>moving_obstacle/link</frame_id>
+          <robot_namespace>moving_obstacle</robot_namespace>
+          <publish_odometry>false</publish_odometry>
+          <publish_odometry_tf>false</publish_odometry_tf>
+        </plugin>
+      </model>
+
+    </model>
+
+    <!-- Navigation goal markers -->
+    <model name="goal_marker_1">
+      <pose>3 3 0.1 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.2</radius>
+              <length>0.1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.2 1</ambient>
+            <diffuse>0.8 0.8 0.2 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="goal_marker_2">
+      <pose>-2 -2 0.1 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.2</radius>
+              <length>0.1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.2 1</ambient>
+            <diffuse>0.8 0.8 0.2 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Physics engine configuration -->
+    <physics type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+
+    <!-- Scene configuration -->
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>true</shadows>
+    </scene>
+
+    <!-- GUI configuration -->
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose frame=''>5 -5 2 0 0.5 2.35</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+
+  </world>
+</sdf>
